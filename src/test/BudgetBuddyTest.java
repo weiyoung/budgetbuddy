@@ -22,19 +22,19 @@ public class BudgetBuddyTest {
         assertEquals(0, tester.getLimit());
     }
 
-    @Test
-    public void testAddEntry() {
-        tester.addEntry(7, "Hoolala Chicken w/ friends", 18.79);
-        int expectedChoice = 7;
-        String expectedName = "Hoolala Chicken w/ friends";
-        double expectedAmount = 18.79;
-
-    }
-
-    @Test
-    public void testCheckBudget() {
-
-    }
+//    @Test
+//    public void testAddEntry() {
+//        tester.createNewEntry(7, "Hoolala Chicken w/ friends", 18.79);
+//        int expectedChoice = 7;
+//        String expectedName = "Hoolala Chicken w/ friends";
+//        double expectedAmount = 18.79;
+//        assertEquals();
+//    }
+//
+//    @Test
+//    public void testCheckBudget() {
+//
+//    }
 
 
 }

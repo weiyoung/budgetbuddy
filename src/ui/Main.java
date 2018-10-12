@@ -10,50 +10,56 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         BudgetBuddy buddy0 = new BudgetBuddy();
-        System.out.println("Nice to meet you! \nI am your Budget Buddy :) ");
-        boolean setBudget = true;
-        while (setBudget) {
+        System.out.println("Nice to meet you! I am your Budget Buddy :) \n");
+
+        while (true) {
             System.out.println("What is your monthly budget?");
             double budget = scanner.nextDouble();
             buddy0.setLimit(budget);
-            System.out.printf("Do you want to set your monthly budget at $%.2f? (enter Y or N)", buddy0.getLimit());
+            System.out.printf("Confirm monthly budget at $%.2f? (enter Y or N)", buddy0.getLimit());
             String input = scanner.next();
             if (input.equalsIgnoreCase("y")) {
-                System.out.printf("Your monthly budget is set at $%.2f \n", buddy0.getLimit());
-                setBudget = false;
+                System.out.printf("Monthly budget set at $%.2f \n", buddy0.getLimit());
                 break;
-            } else if (input.equalsIgnoreCase("n")) {
-                System.out.println("Let's start again. ");
             } else
-                System.out.println("Invalid input. ");
+                System.out.println("\nLet's start again. ");
         }
-        boolean addEntry = false, viewSummary = false, runLoop = false;
+
+        boolean rebootMenu = false, addEntry = false, viewSummary = false;
 
         do {
-            System.out.println("What would you like to do? \n1 - Add new entry \n2 - View monthly summary ");
+            System.out.println("\n----------MENU---------- \n1 - Add new entry \n2 - View monthly summary ");
             int option = scanner.nextInt();
-            if (option==1)
+            if (option==1) {
                 addEntry = true;
-            else if (option==2)
+                rebootMenu = false;
+            } else if (option==2) {
                 viewSummary = true;
-            else {
+                rebootMenu = false;
+            } else {
                 System.out.println("invalid option");
-                runLoop = true;
+                rebootMenu = true;
             }
-        } while (runLoop);
+        } while (rebootMenu);
 
         while (addEntry) {
-            System.out.println("Choose a category: \n1 - Eat Out \n2 - Groceries \n3 - Entertainment " +
+            System.out.println("\nCHOOSE CATEGORY: \n1 - Eat Out \n2 - Groceries \n3 - Entertainment " +
                     "\n4 - Bills \n5 - Utilities \n6 - Rent \n7 - Miscellaneous");
             int choice = scanner.nextInt();
             System.out.println("What would you like to name this entry? \n(press ENTER when done)");
             String entryName = scanner.nextLine();
-            scanner.nextLine();
             System.out.println("How much did you spend on it?");
             double entryAmount = scanner.nextDouble();
-            buddy0.addEntry(choice, entryName, entryAmount);
+            buddy0.createNewEntry(choice, entryName, entryAmount);
+            buddy0.viewSummary();
+            //testing:
+            addEntry = false;
             //run the option menu again
         }
+
+        buddy0.save();
+        buddy0.load();
+        //when exit,
 
     }
 

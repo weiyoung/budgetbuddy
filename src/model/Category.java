@@ -2,6 +2,8 @@ package model;
 
 public interface Category {
 
-    void getColor();
+    String getName();
+
+    String getColor();
 
 }

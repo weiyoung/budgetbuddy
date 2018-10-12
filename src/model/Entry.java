@@ -12,6 +12,16 @@ public class Entry {
         this.entryAmount = entryAmount;
     }
 
+    public String getCategory() {
+        return category.getName();
+    }
 
+    public String getEntryName() {
+        return entryName;
+    }
+
+    public double getEntryAmount() {
+        return entryAmount;
+    }
 
 }
