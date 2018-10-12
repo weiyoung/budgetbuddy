@@ -2,23 +2,11 @@ package model.categories;
 
 import model.Category;
 
-public class Utilities implements Category {
-
-    String name;
-    String color;
+public class Utilities extends Category {
 
     public Utilities() {
-        name = "Utilities";
-        color = "purple";
+        setName("Utilities");
+        setColor("purple");
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getColor() {
-        return color;
-    }
 }

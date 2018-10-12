@@ -1,32 +1,23 @@
 package model.categories;
 
 import model.CategoryWithLimit;
-import model.Category;
 
-public class Entertainment implements Category, CategoryWithLimit {
+public class Entertainment extends CategoryWithLimit {
 
-    String name;
-    String color;
-    double categoryLimit;
+    public String entertainmentType;
 
     public Entertainment() {
-        name = "Entertainment";
-        color = "orange";
+        setName("Entertainment");
+        setColor("orange");
+        setCategoryLimit(100);
+        setEntertainmentType("Movie");
     }
 
-    @Override
-    public String getName() {
-        return name;
+    public String getEntertainmentType() {
+        return entertainmentType;
     }
 
-    @Override
-    public String getColor() {
-        return color;
+    public void setEntertainmentType(String entertainmentType) {
+        this.entertainmentType = entertainmentType;
     }
-
-    @Override
-    public void getCategoryLimit() {
-        categoryLimit = 0.5 * CATEGORY_LIMIT;
-    }
-
 }

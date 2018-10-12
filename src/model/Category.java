@@ -1,9 +1,24 @@
 package model;
 
-public interface Category {
+public abstract class Category {
 
-    String getName();
+    String name;
+    String color;
 
-    String getColor();
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
 }

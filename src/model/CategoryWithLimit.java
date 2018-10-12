@@ -1,9 +1,14 @@
 package model;
 
-public interface CategoryWithLimit extends Category {
+public abstract class CategoryWithLimit extends Category {
 
-    double CATEGORY_LIMIT = 200;
+    double categoryLimit;
 
-    void getCategoryLimit();
+    public double getCategoryLimit() {
+        return categoryLimit;
+    }
 
+    public void setCategoryLimit(double categoryLimit) {
+        this.categoryLimit = categoryLimit;
+    }
 }

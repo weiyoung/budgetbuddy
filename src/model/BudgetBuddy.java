@@ -35,14 +35,10 @@ public class BudgetBuddy implements Loadable, Saveable {
         return this.total;
     }
 
-    public void addEntry() {
-
-    }
-
     public void createNewEntry(int choice, String name, double entryAmount) {
         Category category;
         switch (choice) {
-            case 1: category = new EatOut(); break;
+            case 1: category = new Food(); break;
             case 2: category = new Groceries(); break;
             case 3: category = new Entertainment(); break;
             case 4: category = new Bills(); break;
@@ -55,13 +51,12 @@ public class BudgetBuddy implements Loadable, Saveable {
         checkBudget(entry);
     }
 
-    public void checkBudget(Entry entry) {
+    private void checkBudget(Entry entry) {
         total += entry.entryAmount;
         if (getTotal() > getLimit())
-            System.out.printf("You have exceeded your limit by $%.2f!! \nPlease be aware of how much you spent!!\n\n", getTotal() - getLimit());
+            System.out.printf("LIMIT EXCEEDED BY $%.2f!!! \nPlease be aware of how much you spent!!\n\n", getTotal() - getLimit());
         else {
             System.out.printf("You have spent $%.2f so far. \n", getTotal());
-            //what happens after you overspend?
         }
     }
 
@@ -69,7 +64,7 @@ public class BudgetBuddy implements Loadable, Saveable {
         for (Entry e: entries) {
             System.out.printf("Category: %s \n", e.getCategory());
             System.out.printf("Tag: %s \n", e.getEntryName());
-            System.out.printf("Amount: $%.2f \n", e.getEntryAmount());
+            System.out.printf("Amount: $%.2f \n\n", e.getEntryAmount());
         }
     }
 
@@ -86,13 +81,25 @@ public class BudgetBuddy implements Loadable, Saveable {
 
     @Override
     public void load() throws IOException {
-        System.out.println("\nLoaded from memory: ");
         List<String> lines  = Files.readAllLines(Paths.get("BudgetBuddySave.txt"));
+        if (isSaveFileEmpty(lines)){
+            throw new IOException();
+        }
         this.total = Double.parseDouble(lines.get(0));
         this.limit = Double.parseDouble(lines.get(1));
         for (int i = 2; i < lines.size(); i++) {
             lines.get(i).split(";");
         }
+        System.out.println("Memory loaded.");
+    }
+
+    public boolean isSaveFileEmpty(List<String> lines) {
+        boolean empty = false;
+        for (String s: lines ){
+            if (s.isEmpty())
+                empty = true;
+        }
+        return empty;
     }
 
 
