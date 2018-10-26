@@ -10,4 +10,9 @@ public class Food extends CategoryWithLimit {
         setCategoryLimit(200);
     }
 
+    @Override
+    public double getCategoryLimit() {
+        return super.getCategoryLimit();
+    }
+
 }

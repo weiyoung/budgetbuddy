@@ -1,6 +1,8 @@
 package model;
 
 import model.categories.*;
+import model.exceptions.CloseToOverspendingException;
+import model.exceptions.ExceededTotalException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,7 +17,7 @@ public class BudgetBuddy implements Loadable, Saveable {
 
     private double total;
     private double limit;
-    ArrayList<Entry> entries;
+    private ArrayList<Entry> entries;
 
     public BudgetBuddy() {
         total = 0;
@@ -48,16 +50,23 @@ public class BudgetBuddy implements Loadable, Saveable {
         }
         Entry entry = new Entry(category, name, entryAmount);
         entries.add(entry);
-        checkBudget(entry);
+        try {
+            checkBudget(entry);
+        } catch (ExceededTotalException e) {
+            System.out.printf("LIMIT EXCEEDED BY $%.2f!!! \nPlease be aware of how much you spent!!\n\n", getTotal() - getLimit());
+        } catch (CloseToOverspendingException e) {
+            System.out.printf("You have spent $%.2f so far. \nThis is more than 90%% of your budget. \nPlease beware of your spendings.\n\n", getTotal());
+        }
     }
 
-    private void checkBudget(Entry entry) {
+    public void checkBudget(Entry entry) throws ExceededTotalException, CloseToOverspendingException {
         total += entry.entryAmount;
         if (getTotal() > getLimit())
-            System.out.printf("LIMIT EXCEEDED BY $%.2f!!! \nPlease be aware of how much you spent!!\n\n", getTotal() - getLimit());
-        else {
+            throw new ExceededTotalException();
+        else if (getTotal()/getLimit() > 0.9)
+            throw new CloseToOverspendingException();
+        else
             System.out.printf("You have spent $%.2f so far. \n", getTotal());
-        }
     }
 
     public void viewSummary() {
