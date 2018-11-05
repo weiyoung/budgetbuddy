@@ -3,6 +3,8 @@ package model;
 import model.categories.*;
 import model.exceptions.CloseToOverspendingException;
 import model.exceptions.ExceededTotalException;
+import model.exceptions.InvalidChoiceException;
+import ui.BudgetApp;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,14 +12,14 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BudgetBuddy implements Loadable, Saveable {
 
     private double total;
     private double limit;
     private ArrayList<Entry> entries;
+    private Map<Category, Entry> categoryMap = new HashMap<>();
 
     public BudgetBuddy() {
         total = 0;
@@ -37,19 +39,10 @@ public class BudgetBuddy implements Loadable, Saveable {
         return this.total;
     }
 
-    public void createNewEntry(int choice, String name, double entryAmount) {
-        Category category;
-        switch (choice) {
-            case 1: category = new Food(); break;
-            case 2: category = new Groceries(); break;
-            case 3: category = new Entertainment(); break;
-            case 4: category = new Bills(); break;
-            case 5: category = new Utilities(); break;
-            case 6: category = new Rent(); break;
-            default: category = new Miscellaneous(); break;
-        }
+    public void createNewEntry(Category category, String name, double entryAmount) throws InvalidChoiceException {
         Entry entry = new Entry(category, name, entryAmount);
         entries.add(entry);
+        categoryMap.put(category, entry);
         try {
             checkBudget(entry);
         } catch (ExceededTotalException e) {
@@ -75,6 +68,30 @@ public class BudgetBuddy implements Loadable, Saveable {
             System.out.printf("Tag: %s \n", e.getEntryName());
             System.out.printf("Amount: $%.2f \n\n", e.getEntryAmount());
         }
+    }
+
+    public void checkSummaryByCategory(Category category) throws InvalidChoiceException {
+        for (Entry e: entries) {
+            if (e.equals(categoryMap.get(category))) {
+                System.out.printf("Tag: %s \n", e.getEntryName());
+                System.out.printf("Amount: $%.2f \n\n", e.getEntryAmount());
+            }
+        }
+    }
+
+    public Category categorySwitch(int choice) throws InvalidChoiceException {
+        Category category;
+        switch (choice) {
+            case 1: category = new Food(); break;
+            case 2: category = new Groceries(); break;
+            case 3: category = new Entertainment(); break;
+            case 4: category = new Bills(); break;
+            case 5: category = new Utilities(); break;
+            case 6: category = new Rent(); break;
+            case 7: category = new Miscellaneous(); break;
+            default: throw new InvalidChoiceException();
+        }
+        return category;
     }
 
     @Override

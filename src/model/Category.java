@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public abstract class Category {
 
     String name;
@@ -19,6 +21,20 @@ public abstract class Category {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return Objects.equals(name, category.name) &&
+                Objects.equals(color, category.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, color);
     }
 
 }

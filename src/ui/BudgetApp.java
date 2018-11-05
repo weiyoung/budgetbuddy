@@ -1,6 +1,8 @@
 package ui;
 
 import model.BudgetBuddy;
+import model.Category;
+import model.exceptions.InvalidChoiceException;
 import model.exceptions.NegativeBudgetException;
 
 import java.io.FileNotFoundException;
@@ -57,7 +59,7 @@ public class BudgetApp {
     }
 
     public void menu() {
-        System.out.println("\n----------MENU---------- \n1 - Add new entry \n2 - View monthly summary \n3 - Exit");
+        System.out.println("\n----------MENU---------- \n1 - Add new entry \n2 - View monthly summary \n3 - Check summary by category \n4 - Exit");
         int option = 0;
         try {
             option = scanner.nextInt();
@@ -67,9 +69,10 @@ public class BudgetApp {
             if (option==1) {
                 addingEntry();
             } else if (option==2) {
-                buddy0.viewSummary();
-                menu();
+                viewingSummary();
             } else if (option==3) {
+                checkingByCategory();
+            } else if (option==4) {
                 exit();
             } else {
                 System.out.println("invalid option");
@@ -79,11 +82,30 @@ public class BudgetApp {
     }
 
     public void addingEntry() {
-        int choice = choosingCategory();
+        Category category = null;
+        try {
+            int choice = choosingCategory();
+            category  = buddy0.categorySwitch(choice);
+        } catch (InvalidChoiceException e) {
+            System.out.println("invalid option");
+            addingEntry();
+        }
         System.out.println("What would you like to name this entry? \n(press ENTER when done)");
         String entryName = scanner.nextLine();
         double entryAmount = enteringAmount();
-        buddy0.createNewEntry(choice, entryName, entryAmount);
+        buddy0.createNewEntry(category, entryName, entryAmount);
+        menu();
+    }
+
+    public void viewingSummary() {
+        buddy0.viewSummary();
+        menu();
+    }
+
+    public void checkingByCategory() {
+        int choice = choosingCategory();
+        Category category  = buddy0.categorySwitch(choice);
+        buddy0.checkSummaryByCategory(category);
         menu();
     }
 
