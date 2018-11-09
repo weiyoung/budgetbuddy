@@ -4,8 +4,8 @@ import model.BudgetBuddy;
 import model.Category;
 import model.Entry;
 import model.categories.*;
-import model.exceptions.CloseToOverspendingException;
-import model.exceptions.ExceededTotalException;
+import model.exceptions.Overspending.AlmostOverspendException;
+import model.exceptions.Overspending.OverspendException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,32 +39,32 @@ public class BudgetBuddyTest {
 
     @Test
     public void testViewingSummary() {
-        tester.createNewEntry(1, "Running Chicken", 20);
+        tester.createNewEntry(new Food(), "Running Chicken", 20);
         tester.viewSummary();
     }
 
     @Test
-    public void testCloseToOverspendingException() {
-        Entry testEntry = new Entry(new Rent(), "$$$", 950);
+    public void testAlmostOverspendException() {
+        Entry testEntry = new Entry(new Rent(), "$$$", 910);
         try {
             tester.checkBudget(testEntry);
-            fail("Should throw CloseToOverspendingException now...");
-        } catch (CloseToOverspendingException e) {
+            fail("Should throw AlmostOverspendException now...");
+        } catch (AlmostOverspendException e) {
             //pass
-        } catch (ExceededTotalException e) {
-            fail("Shouldn't throw this! Expecting CloseToOverspendingException instead.");
+        } catch (OverspendException e) {
+            fail("Shouldn't throw this! Expecting AlmostOverspendException instead.");
         }
     }
 
     @Test
-    public void testExceededTotalException() {
+    public void testOverspendException() {
         Entry testEntry = new Entry(new Miscellaneous(), "Some super expensive shit", 1500);
         try {
             tester.checkBudget(testEntry);
-            fail("Should throw CloseToOverspendingException now...");
-        } catch (CloseToOverspendingException e) {
-            fail("Wrong exception thrown!! shoudl throw ExceededTotalException instead.");
-        } catch (ExceededTotalException e) {
+            fail("Should throw AlmostOverspendException now...");
+        } catch (AlmostOverspendException e) {
+            fail("Wrong exception thrown!! shoudl throw OverspendException instead.");
+        } catch (OverspendException e) {
             //pass
         }
     }
