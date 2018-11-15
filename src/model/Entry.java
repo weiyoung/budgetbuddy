@@ -4,26 +4,26 @@ import java.util.Objects;
 
 public class Entry {
 
-    Category category;
-    String entryName;
-    double entryAmount;
+    private String category;
+    private String name;
+    private double amount;
 
-    public Entry(Category category, String entryName, double entryAmount) {
+    public Entry(String category, String name, double amount) {
         this.category = category;
-        this.entryName = entryName;
-        this.entryAmount = entryAmount;
+        this.name = name;
+        this.amount = amount;
     }
 
     public String getCategory() {
-        return category.getName();
+        return category;
     }
 
-    public String getEntryName() {
-        return entryName;
+    public String getName() {
+        return name;
     }
 
-    public double getEntryAmount() {
-        return entryAmount;
+    public double getAmount() {
+        return amount;
     }
 
     @Override
@@ -38,5 +38,4 @@ public class Entry {
     public int hashCode() {
         return Objects.hash(category);
     }
-
 }
