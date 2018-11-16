@@ -1,10 +1,12 @@
 package model;
 
+import observer.Subject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BudgetBuddy {
+public class BudgetBuddy extends Subject {
 
     private double total;
     private double limit;
@@ -44,11 +46,15 @@ public class BudgetBuddy {
         return entries;
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     public void createEntry(Category category, String name, double amount) {
         Entry entry = new Entry(category, name, amount);
         entries.add(entry);
         total += entry.getAmount();
         categoryMap.put(category, entry);
+        notifyObservers(entries.size());
     }
 
     public Map<Category, Entry> getCategoryMap() {

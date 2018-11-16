@@ -9,7 +9,6 @@ import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -26,20 +25,28 @@ public class App {
 
     App() {
         System.out.println("Buddy ID: " + System.identityHashCode(buddy));
-        parse();
+        parseInfo();
         loadSaveFile();
         menu.menu();
     }
 
-    private void parse() {
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
+    private void parseInfo() {
         try {
-            String url = "http://api.timezonedb.com/v2.1/get-time-zone?key=6WI0HR0J6QJF&format=json&by=zone&zone=America/Vancouver&fields=formatted";
-            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuffer response = new StringBuffer();
-            response.append(reader.readLine());
+            String urlString = "http://api.timezonedb.com/v2.1/get-time-zone?key=6WI0HR0J6QJF&format=json&by=zone&zone=America/Vancouver";
+            URL url = new URL(urlString);
+            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+            String line;
+            StringBuilder response = new StringBuilder();
+            while ((line = br.readLine()) != null) {
+                response.append(line);
+                response.append(System.lineSeparator());
+            }
             DateTimeParser parser = new DateTimeParser();
             parser.parse(response.toString());
+            br.close();
         } catch (IOException e) {
             System.out.println("Error reading file...");
         } catch (JSONException e) {
@@ -47,7 +54,9 @@ public class App {
         }
     }
 
-    //tries to load. if fails, calls start()
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     private void loadSaveFile() {
         try {
             Saves s = new Saves();
@@ -60,7 +69,9 @@ public class App {
         }
     }
 
-    //asks for monthly budget
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     private void start() {
         System.out.println("\nPlease enter monthly budget: ");
         try {
@@ -79,7 +90,9 @@ public class App {
         }
     }
 
-    //inputs budget
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     private void inputBudget() throws NegativeInputException {
         try {
             double budget = scanner.nextDouble();

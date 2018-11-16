@@ -22,6 +22,9 @@ public class SummaryChecker {
         return thisSummaryChecker;
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     protected void monthlySummary() {
         menu.checkBudget();
         for (Entry e: buddy.getEntries()) {
@@ -31,6 +34,9 @@ public class SummaryChecker {
         }
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     protected void summaryByCategory() {
         Category category = null;
         try {
@@ -42,6 +48,9 @@ public class SummaryChecker {
         viewSummaryByCategory(category);
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     protected void viewSummaryByCategory(Category category) {
         int count = 0;
         for (Entry e : buddy.getEntries()) {

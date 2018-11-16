@@ -2,13 +2,13 @@ package ui;
 
 import model.BudgetBuddy;
 import model.Category;
-import model.exceptions.InvalidOptionException;
-import model.exceptions.NegativeInputException;
+import model.exceptions.*;
+import observer.BudgetObserver;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class EntryAdder {
+public class EntryAdder implements BudgetObserver {
 
     private Scanner scanner = new Scanner(System.in);
     private BudgetBuddy buddy;
@@ -26,6 +26,9 @@ public class EntryAdder {
         return thisEntryAdder;
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     protected void addingEntry() {
         Category category = null;
         try {
@@ -47,6 +50,9 @@ public class EntryAdder {
         menu.checkBudget();
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     protected double enteringAmount() throws NegativeInputException {
         System.out.println("How much did you spend on it?");
         double amount = 0;
@@ -60,4 +66,8 @@ public class EntryAdder {
         return amount;
     }
 
+    @Override
+    public void update(int amount) {
+        System.out.println("Observer says: number of entries: " + amount);
+    }
 }

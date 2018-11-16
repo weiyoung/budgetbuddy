@@ -10,6 +10,9 @@ import java.util.List;
 
 public class Saves {
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     public void save(BudgetBuddy b) throws FileNotFoundException, UnsupportedEncodingException {
         PrintWriter writer = new PrintWriter("BudgetBuddySave.txt","UTF-8");
         writer.printf("%.2f\n", b.getTotal());
@@ -19,6 +22,9 @@ public class Saves {
         writer.close();
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     public void load(BudgetBuddy b) throws IOException {
         List<String> lines  = Files.readAllLines(Paths.get("BudgetBuddySave.txt"));
         if (isSaveFileEmpty(lines))
@@ -31,6 +37,9 @@ public class Saves {
         }
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     public boolean isSaveFileEmpty(List<String> lines) {
         boolean emptiness = false;
         for (String s: lines )

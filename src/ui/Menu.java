@@ -4,8 +4,7 @@ import model.BudgetBuddy;
 import model.Category;
 import model.Saves;
 import model.categories.*;
-import model.exceptions.InvalidOptionException;
-import model.exceptions.NegativeInputException;
+import model.exceptions.*;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
@@ -32,12 +31,16 @@ public class Menu {
         return thisMenu;
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     protected void menu() {
         System.out.println("\n-------------MENU------------- "
                 + "\n1 - Add new entry "
                 + "\n2 - View monthly summary "
                 + "\n3 - Check summary by category "
                 + "\n4 - Exit ");
+        buddy.addObserver(a);
         int option = 0;
         try {
             option = scanner.nextInt();
@@ -53,6 +56,9 @@ public class Menu {
         }
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     protected int choosingCategory() {
         int option = 0;
         System.out.println("\nCHOOSE CATEGORY: " +
@@ -71,11 +77,17 @@ public class Menu {
         return option;
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     protected void checkInputValidity(double amount) throws NegativeInputException {
         if (amount <= 0)
             throw new NegativeInputException("Invalid - please input positive amount.");
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     protected Category categorySwitch(int option) throws InvalidOptionException {
         switch (option) {
             case 1: return new Food();
@@ -89,6 +101,9 @@ public class Menu {
         }
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     protected void checkBudget() {
         System.out.printf("Your monthly budget is $%.2f\n", buddy.getLimit());
         if (buddy.getTotal() > buddy.getLimit())
@@ -102,6 +117,9 @@ public class Menu {
         }
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     private void exit() {
         try {
             Saves s = new Saves();
