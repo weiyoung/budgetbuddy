@@ -15,7 +15,7 @@ public class Saves {
         writer.printf("%.2f\n", b.getTotal());
         writer.printf("%.2f\n", b.getLimit());
         for (Entry e: b.getEntries())
-            writer.printf("%s;%s;%.2f\n", e.getCategory(), e.getName(), e.getAmount());
+            writer.printf("%s|%s|%.2f\n", e.getCategory(), e.getName(), e.getAmount());
         writer.close();
     }
 
@@ -26,8 +26,8 @@ public class Saves {
         b.setTotal(Double.parseDouble(lines.get(0)));
         b.setLimit(Double.parseDouble(lines.get(1)));
         for (int i = 2; i < lines.size(); i++) {
-            lines.get(i).split(";");
-            //create entries with the read data
+            //stub
+            lines.get(i).split("|");
         }
     }
 

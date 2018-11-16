@@ -9,12 +9,19 @@ public class BudgetBuddy {
     private double total;
     private double limit;
     private ArrayList<Entry> entries;
-    public Map<String, Entry> categoryMap = new HashMap<>();
+    private Map<Category, Entry> categoryMap = new HashMap<>();
+    private static BudgetBuddy thisBuddy = null;
 
-    public BudgetBuddy() {
+    private BudgetBuddy() {
         total = 0;
         limit = 0;
         entries = new ArrayList();
+    }
+
+    public static BudgetBuddy getInstance() {
+        if (thisBuddy == null)
+            thisBuddy = new BudgetBuddy();
+        return thisBuddy;
     }
 
     public double getTotal() {
@@ -37,11 +44,14 @@ public class BudgetBuddy {
         return entries;
     }
 
-    public void createEntry(String category, String name, double amount) {
+    public void createEntry(Category category, String name, double amount) {
         Entry entry = new Entry(category, name, amount);
         entries.add(entry);
         total += entry.getAmount();
         categoryMap.put(category, entry);
     }
 
+    public Map<Category, Entry> getCategoryMap() {
+        return categoryMap;
+    }
 }

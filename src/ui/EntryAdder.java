@@ -1,6 +1,7 @@
 package ui;
 
 import model.BudgetBuddy;
+import model.Category;
 import model.exceptions.InvalidOptionException;
 import model.exceptions.NegativeInputException;
 
@@ -9,17 +10,24 @@ import java.util.Scanner;
 
 public class EntryAdder {
 
-    Scanner scanner = new Scanner(System.in);
-    BudgetBuddy buddy;
-    Menu menu;
+    private Scanner scanner = new Scanner(System.in);
+    private BudgetBuddy buddy;
+    private Menu menu;
+    private static EntryAdder thisEntryAdder = null;
 
-    public EntryAdder(BudgetBuddy buddy, Menu menu) {
+    private EntryAdder(BudgetBuddy buddy, Menu menu) {
         this.buddy = buddy;
         this.menu = menu;
     }
 
-    public void addingEntry() {
-        String category = "";
+    public static EntryAdder getInstance(BudgetBuddy buddy, Menu menu) {
+        if (thisEntryAdder == null)
+            thisEntryAdder = new EntryAdder(buddy, menu);
+        return thisEntryAdder;
+    }
+
+    protected void addingEntry() {
+        Category category = null;
         try {
             int option = menu.choosingCategory();
             category = menu.categorySwitch(option);
@@ -36,10 +44,10 @@ public class EntryAdder {
             System.out.println(e.getMessage());
         }
         buddy.createEntry(category, name, amount);
-        checkBudget();
+        menu.checkBudget();
     }
 
-    public double enteringAmount() throws NegativeInputException {
+    protected double enteringAmount() throws NegativeInputException {
         System.out.println("How much did you spend on it?");
         double amount = 0;
         try {
@@ -51,18 +59,5 @@ public class EntryAdder {
         }
         return amount;
     }
-
-    public void checkBudget() {
-        if (buddy.getTotal() > buddy.getLimit())
-            System.err.printf("LIMIT EXCEEDED BY $%.2f!!! \nPlease be aware of how much you spent!!\n\n", buddy.getTotal() - buddy.getLimit());
-        else if (buddy.getTotal() == buddy.getLimit())
-            System.err.printf("LIMIT REACHED!!! \nPlease be aware of how much you spent!!\n\n");
-        else {
-            System.out.printf("You have spent $%.2f so far. \n", buddy.getTotal());
-            if (buddy.getTotal()/buddy.getLimit() > 0.9)
-                System.out.printf("This is more than 90%% of your budget. \nPlease beware of your spendings.\n\n");
-        }
-    }
-
 
 }
