@@ -39,7 +39,7 @@ public class Menu {
                 + "\n1 - Add new entry "
                 + "\n2 - View monthly summary "
                 + "\n3 - Check summary by category "
-                + "\n4 - Exit ");
+                + "\n4 - Save and exit ");
         buddy.addObserver(a);
         int option = 0;
         try {
@@ -50,7 +50,7 @@ public class Menu {
             if (option==1) a.addingEntry();
             else if (option==2) s.monthlySummary();
             else if (option==3) s.summaryByCategory();
-            else if (option==4) exit();
+            else if (option==4) saveAndExit();
             else System.out.println("Invalid option.");
             menu();
         }
@@ -88,7 +88,7 @@ public class Menu {
     // REQUIRES:
     // MODIFIES:
     // EFFECTS:
-    protected Category categorySwitch(int option) throws InvalidOptionException {
+    public Category categorySwitch(int option) throws InvalidOptionException {
         switch (option) {
             case 1: return new Food();
             case 2: return new Groceries();
@@ -120,16 +120,18 @@ public class Menu {
     // REQUIRES:
     // MODIFIES:
     // EFFECTS:
-    private void exit() {
+    private void saveAndExit() {
         try {
             Saves s = new Saves();
             s.save(buddy);
-            System.out.println("Byeee ヽ(^o^)丿");
+            System.out.println("Saved successfully.");
             System.exit(0);
         } catch (FileNotFoundException e) {
             System.err.println("Error: save file not found.");
         } catch (UnsupportedEncodingException e) {
             System.err.println("Error: encoding unsupported.");
+        } finally {
+            System.out.println("Byeee ヽ(^o^)丿");
         }
     }
 

@@ -48,6 +48,7 @@ public class EntryAdder implements BudgetObserver {
         }
         buddy.createEntry(category, name, amount);
         menu.checkBudget();
+        System.out.println(buddy.getUsedPercentage());
     }
 
     // REQUIRES:

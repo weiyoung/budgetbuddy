@@ -39,7 +39,10 @@ public class BudgetBuddy extends Subject {
     }
 
     public void setLimit(double limit) {
-        this.limit = limit;
+        if (limit > 0)
+            this.limit = limit;
+        else
+            this.limit = 0;
     }
 
     public ArrayList<Entry> getEntries() {
@@ -55,6 +58,10 @@ public class BudgetBuddy extends Subject {
         total += entry.getAmount();
         categoryMap.put(category, entry);
         notifyObservers(entries.size());
+    }
+
+    public String getUsedPercentage() {
+        return (total/limit*100) + "%";
     }
 
     public Map<Category, Entry> getCategoryMap() {
