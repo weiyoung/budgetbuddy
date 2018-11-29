@@ -60,16 +60,6 @@
           <text value="summary"/>
         </properties>
       </component>
-      <component id="e4006" class="javax.swing.JLabel" binding="welcomeMsg">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font name="Apple Chancery" size="50"/>
-          <foreground color="-15872"/>
-          <text value=" Your Budget:"/>
-        </properties>
-      </component>
       <component id="8f6d9" class="javax.swing.JButton" binding="addBtn" custom-create="true">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
@@ -103,7 +93,7 @@
           <background color="-1305"/>
           <editable value="false"/>
           <enabled value="true"/>
-          <font name="Courier" size="20"/>
+          <font name="Courier" size="18"/>
           <foreground color="-10404608"/>
           <horizontalAlignment value="4"/>
           <opaque value="false"/>
@@ -112,9 +102,23 @@
           <verifyInputWhenFocusTarget value="true"/>
         </properties>
       </component>
+      <component id="edf0b" class="javax.swing.JButton" binding="exitBtn">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="6" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="60" height="40"/>
+            <preferred-size width="60" height="40"/>
+            <maximum-size width="60" height="40"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1305"/>
+          <font name="Apple LiGothic" size="20"/>
+          <text value="exit"/>
+        </properties>
+      </component>
       <component id="97242" class="javax.swing.JTextField" binding="theLimit" custom-create="true">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="1" indent="0" use-parent-layout="false">
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false">
             <minimum-size width="150" height="50"/>
             <preferred-size width="150" height="50"/>
             <maximum-size width="150" height="50"/>
@@ -123,25 +127,35 @@
         <properties>
           <background color="-1305"/>
           <editable value="false"/>
-          <font name="Courier" size="20"/>
+          <font name="Courier" size="18"/>
           <foreground color="-10404608"/>
           <horizontalAlignment value="2"/>
           <margin top="0" left="0" bottom="0" right="0"/>
-          <text value="/$10,000.00"/>
+          <text value="/ $10,000.00"/>
+        </properties>
+      </component>
+      <component id="e4006" class="javax.swing.JLabel" binding="welcomeMsg">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="1" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Apple Chancery" size="50"/>
+          <foreground color="-15872"/>
+          <text value="Your Budget:"/>
         </properties>
       </component>
       <component id="f501d" class="javax.swing.JTextField" binding="usedPercentage" custom-create="true">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="130" height="60"/>
-            <preferred-size width="130" height="60"/>
-            <maximum-size width="130" height="60"/>
+            <minimum-size width="130" height="50"/>
+            <preferred-size width="130" height="50"/>
+            <maximum-size width="130" height="50"/>
           </grid>
         </constraints>
         <properties>
           <background color="-1305"/>
           <editable value="false"/>
-          <font name="Orator Std" size="15"/>
+          <font name="Source Code Pro" size="14"/>
           <foreground color="-10404608"/>
           <horizontalAlignment value="4"/>
           <text value="100% used"/>
@@ -162,20 +176,6 @@
           <foreground color="-2906818"/>
           <horizontalAlignment value="4"/>
           <text value="30/11/2018"/>
-        </properties>
-      </component>
-      <component id="edf0b" class="javax.swing.JButton" binding="exitBtn">
-        <constraints>
-          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="6" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="60" height="40"/>
-            <preferred-size width="60" height="40"/>
-            <maximum-size width="60" height="40"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-1305"/>
-          <font name="Apple LiGothic" size="20"/>
-          <text value="exit"/>
         </properties>
       </component>
     </children>

@@ -44,27 +44,28 @@ public class MainPage  {
         df.setMaximumFractionDigits(2);
         df.setMinimumFractionDigits(2);
         theTotal.setText("$" + df.format(buddy.getTotal()));
-        theLimit.setText("/$" + df.format(buddy.getLimit()));
+        theLimit.setText("/ $" + df.format(buddy.getLimit()));
         usedPercentage.setText(buddy.getUsedPercentage() + " used");
 
         addBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("performing new entry");
-                EntryPage page = new EntryPage(buddy);
+                new EntryPage(buddy);
                 frame1.setVisible(false);
             }
         });
         sumBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("performing summary");
+                new SummaryPage(buddy);
+                frame1.setVisible(false);
             }
         });
         catBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("performing by category");
+                new CategoryPage(buddy);
+                frame1.setVisible(false);
             }
         });
     }

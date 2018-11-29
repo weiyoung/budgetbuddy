@@ -63,7 +63,7 @@ public class BudgetBuddy extends Subject {
 
     public String getUsedPercentage() {
         DecimalFormat d = new DecimalFormat();
-        d.setMaximumFractionDigits(2);
+        d.setMaximumFractionDigits(1);
         String percent = d.format((total/limit*100)) + "%";
         return percent;
     }

@@ -9,20 +9,17 @@ import java.awt.event.ActionListener;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class EntryPage {
-    private JPanel entryPanel;
-    private JComboBox comboBox;
-    private JFormattedTextField formattedTextField1;
-    private JButton entryBtn;
-    private JTextField textField1;
-    private JLabel title;
-    private JLabel enterName;
+public class CategoryPage {
+    private JPanel categoryPanel;
+    private JLabel summaryHead;
     private JLabel enterCategory;
-    private JLabel enterAmount;
+    private JComboBox comboBox;
+    private JScrollPane sumPrinter;
+    private JButton backBtn;
 
-    public EntryPage(BudgetBuddy buddy) {
-        JFrame frame2 = new JFrame("New Entry");
-        frame2.setContentPane(entryPanel);
+    public CategoryPage(BudgetBuddy buddy) {
+        JFrame frame2 = new JFrame("Summary by Category");
+        frame2.setContentPane(categoryPanel);
         frame2.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame2.setSize(500,400);
         frame2.setLocationRelativeTo(null);
@@ -30,20 +27,23 @@ public class EntryPage {
         frame2.setVisible(true);
         frame2.setResizable(false);
 
-        entryBtn.addActionListener(new ActionListener() {
+        backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MainPage(buddy);
                 frame2.setVisible(false);
             }
         });
-    }
 
-    public static void main(String[] args) {
-        new EntryPage(BudgetBuddy.getInstance());
     }
 
     private void createUIComponents() {
-        entryBtn = new JButton();
+        sumPrinter = new JScrollPane();
+        sumPrinter.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        backBtn = new JButton();
+    }
+
+    public static void main(String[] args) {
+        new CategoryPage(BudgetBuddy.getInstance());
     }
 }

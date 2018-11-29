@@ -38,7 +38,7 @@ public class SetupPage extends JFrame {
             JOptionPane.showMessageDialog(null, "Please input a valid amount!");
         }
         if (buddy.getLimit() > 0) {
-            MainPage mainpg = new MainPage(buddy);
+            new MainPage(buddy);
             frame0.setVisible(false);
         }
 

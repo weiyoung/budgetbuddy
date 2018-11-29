@@ -74,7 +74,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="c2d48" class="javax.swing.JButton" binding="addEntryButton" default-binding="true">
+      <component id="c2d48" class="javax.swing.JButton" binding="entryBtn" custom-create="true">
         <constraints>
           <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="140" height="80"/>
@@ -132,7 +132,7 @@
           </grid>
         </constraints>
       </vspacer>
-      <component id="d17ae" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+      <component id="d17ae" class="javax.swing.JComboBox" binding="comboBox">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="220" height="30"/>
@@ -146,6 +146,7 @@
           <enabled value="true"/>
           <focusable value="true"/>
           <model>
+            <item value="(select)"/>
             <item value="Food"/>
             <item value="Groceries"/>
             <item value="Entertainment"/>
