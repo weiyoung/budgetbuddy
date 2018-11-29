@@ -8,7 +8,7 @@
     <properties>
       <alignmentX value="0.0"/>
       <alignmentY value="0.0"/>
-      <background color="-2236963"/>
+      <background color="-1315861"/>
       <enabled value="true"/>
       <foreground color="-16777216"/>
       <maximumSize width="500" height="400"/>
@@ -30,7 +30,7 @@
           <alignmentY value="0.0"/>
           <autoscrolls value="true"/>
           <font name="Abadi MT Condensed Extra Bold" size="70" style="2"/>
-          <foreground color="-16040867"/>
+          <foreground color="-16035718"/>
           <horizontalAlignment value="10"/>
           <horizontalTextPosition value="0"/>
           <opaque value="false"/>
@@ -67,7 +67,7 @@
           <font name="Courant" size="14" style="2"/>
           <horizontalAlignment value="4"/>
           <horizontalTextPosition value="2"/>
-          <text value="version 1.0           "/>
+          <text value="version 1.0         "/>
           <verticalAlignment value="1"/>
           <verticalTextPosition value="1"/>
         </properties>

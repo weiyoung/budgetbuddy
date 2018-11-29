@@ -2,6 +2,7 @@ package model;
 
 import observer.Subject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,7 +62,10 @@ public class BudgetBuddy extends Subject {
     }
 
     public String getUsedPercentage() {
-        return (total/limit*100) + "%";
+        DecimalFormat d = new DecimalFormat();
+        d.setMaximumFractionDigits(2);
+        String percent = d.format((total/limit*100)) + "%";
+        return percent;
     }
 
     public Map<Category, Entry> getCategoryMap() {

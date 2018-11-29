@@ -10,28 +10,28 @@ public class SetupPage extends JFrame {
     private JPanel setupPanel;
     private JFormattedTextField inputBox;
     private JButton enterButton;
-    private JFrame frame;
+    private JFrame frame0;
 
     public SetupPage() {
-        frame = new JFrame("Welcome");
-        frame.setContentPane(setupPanel);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setSize(500,400);
-        frame.setLocationRelativeTo(null);
-        frame.pack();
+        frame0 = new JFrame("Welcome");
+        frame0.setContentPane(setupPanel);
+        frame0.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame0.setSize(500,400);
+        frame0.setLocationRelativeTo(null);
+        frame0.pack();
         setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setResizable(false);
+        frame0.setVisible(true);
+        frame0.setResizable(false);
 
         enterButton.addActionListener(this::actionPerformed);
 
     }
 
-    private void actionPerformed(ActionEvent event) {
+    private void actionPerformed(ActionEvent e) {
         String budgetText = inputBox.getText();
         try {
             buddy.setLimit(Double.parseDouble(budgetText));
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException error) {
             System.err.println("NumberFormatException!");
         }
         if (!(buddy.getLimit() > 0)) {
@@ -39,7 +39,7 @@ public class SetupPage extends JFrame {
         }
         if (buddy.getLimit() > 0) {
             MainPage mainpg = new MainPage(buddy);
-            frame.setVisible(false);
+            frame0.setVisible(false);
         }
 
     }
