@@ -32,21 +32,21 @@ public class Saves {
         List<String> lines  = Files.readAllLines(Paths.get("BudgetBuddySave.txt"));
         if (isSaveFileEmpty(lines))
             throw new IOException();
-        b.setTotal(Double.parseDouble(lines.get(0)));
+        b.setTotal(0);
         b.setLimit(Double.parseDouble(lines.get(1)));
         for (int i = 2; i < lines.size(); i++) {
-            String[] arrayOfData = lines.get(i).split("\\|");
-            System.out.println(Arrays.toString(arrayOfData));
+            String[] dataArray = lines.get(i).split("\\|");
+            System.out.println(Arrays.toString(dataArray));
             Category c;
-            if (arrayOfData[0].equals("Food")) c = new Food();
-            else if (arrayOfData[0].equals("Groceries")) c = new Groceries();
-            else if (arrayOfData[0].equals("Entertainment")) c = new Entertainment();
-            else if (arrayOfData[0].equals("Bills")) c = new Bills();
-            else if (arrayOfData[0].equals("Utilities")) c = new Utilities();
-            else if (arrayOfData[0].equals("Rent")) c = new Rent();
+            if (dataArray[0].equals("Food")) c = new Food();
+            else if (dataArray[0].equals("Groceries")) c = new Groceries();
+            else if (dataArray[0].equals("Entertainment")) c = new Entertainment();
+            else if (dataArray[0].equals("Bills")) c = new Bills();
+            else if (dataArray[0].equals("Utilities")) c = new Utilities();
+            else if (dataArray[0].equals("Rent")) c = new Rent();
             else c = new Miscellaneous();
-            double d = Double.parseDouble(arrayOfData[2]);
-            b.createEntry(c, arrayOfData[1], d);
+            double d = Double.parseDouble(dataArray[2]);
+            b.createEntry(c, dataArray[1], d);
         }
     }
 

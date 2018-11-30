@@ -6,13 +6,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class SetupPage extends JFrame {
-    private BudgetBuddy buddy = BudgetBuddy.getInstance();
+    private BudgetBuddy buddy;
+    private JFrame frame0;
     private JPanel setupPanel;
     private JFormattedTextField inputBox;
     private JButton enterButton;
-    private JFrame frame0;
 
-    public SetupPage() {
+    public SetupPage(BudgetBuddy buddy) {
+        this.buddy = buddy;
+        System.out.println("Buddy ID: " + System.identityHashCode(buddy));
+
         frame0 = new JFrame("Welcome");
         frame0.setContentPane(setupPanel);
         frame0.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -24,13 +27,12 @@ public class SetupPage extends JFrame {
         frame0.setResizable(false);
 
         enterButton.addActionListener(this::actionPerformed);
-
     }
 
     private void actionPerformed(ActionEvent e) {
-        String budgetText = inputBox.getText();
+        String text = inputBox.getText();
         try {
-            buddy.setLimit(Double.parseDouble(budgetText));
+            buddy.setLimit(Double.parseDouble(text));
         } catch (NumberFormatException error) {
             System.err.println("NumberFormatException!");
         }
@@ -41,10 +43,5 @@ public class SetupPage extends JFrame {
             new MainPage(buddy);
             frame0.setVisible(false);
         }
-
-    }
-
-    public static void main(String[] args) {
-        new SetupPage();
     }
 }

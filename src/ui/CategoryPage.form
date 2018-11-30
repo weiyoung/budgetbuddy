@@ -18,9 +18,9 @@
       <scrollpane id="34b2e" binding="sumPrinter" custom-create="true">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="4" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="300" height="200"/>
-            <preferred-size width="300" height="200"/>
-            <maximum-size width="300" height="200"/>
+            <minimum-size width="300" height="220"/>
+            <preferred-size width="300" height="220"/>
+            <maximum-size width="300" height="220"/>
           </grid>
         </constraints>
         <properties>
@@ -31,11 +31,20 @@
           <verticalScrollBarPolicy value="20"/>
         </properties>
         <border type="none"/>
-        <children/>
+        <children>
+          <component id="17a21" class="javax.swing.JTextArea" binding="sumArea" custom-create="true">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+              <font name="Courier New" size="14"/>
+              <foreground color="-14464999"/>
+            </properties>
+          </component>
+        </children>
       </scrollpane>
       <component id="a88fd" class="javax.swing.JButton" binding="backBtn" custom-create="true">
         <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="10" fill="0" indent="0" use-parent-layout="false">
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="70" height="40"/>
             <preferred-size width="70" height="40"/>
             <maximum-size width="70" height="40"/>
@@ -60,15 +69,6 @@
           <text value="Summary by Category:"/>
         </properties>
       </component>
-      <hspacer id="ea176">
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <minimum-size width="150" height="-1"/>
-            <preferred-size width="150" height="-1"/>
-            <maximum-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-      </hspacer>
       <hspacer id="bafd8">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
@@ -122,6 +122,15 @@
           <verticalTextPosition value="0"/>
         </properties>
       </component>
+      <hspacer id="ea176">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="180" height="-1"/>
+            <preferred-size width="180" height="-1"/>
+            <maximum-size width="180" height="-1"/>
+          </grid>
+        </constraints>
+      </hspacer>
     </children>
   </grid>
 </form>

@@ -1,11 +1,15 @@
 package ui;
 
 import model.BudgetBuddy;
+import model.Saves;
+import model.categories.Food;
 
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +17,7 @@ import java.util.Date;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class MainPage  {
+    private JFrame frame1;
     private JPanel mainPanel;
     private JLabel welcomeMsg;
     private JTextField dateDisplay;
@@ -27,7 +32,7 @@ public class MainPage  {
     private DecimalFormat df;
 
     public MainPage(BudgetBuddy buddy) {
-        JFrame frame1 = new JFrame("Budget Buddy");
+        frame1 = new JFrame("Budget Buddy");
         frame1.setContentPane(mainPanel);
         frame1.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame1.setSize(500,400);
@@ -50,6 +55,7 @@ public class MainPage  {
         addBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("adding new entry");
                 new EntryPage(buddy);
                 frame1.setVisible(false);
             }
@@ -57,6 +63,7 @@ public class MainPage  {
         sumBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("viewing summary");
                 new SummaryPage(buddy);
                 frame1.setVisible(false);
             }
@@ -64,8 +71,25 @@ public class MainPage  {
         catBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CategoryPage(buddy);
+                System.out.println("checking summary by category");
+                new CategoryPage(buddy, new Food());
                 frame1.setVisible(false);
+            }
+        });
+        exitBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Saves s = new Saves();
+                    s.save(buddy);
+                    System.out.println("Saved successfully. Seeya ヽ(^o^)丿");
+                } catch (FileNotFoundException error) {
+                    System.err.println("Error: save file not found.");
+                } catch (UnsupportedEncodingException error) {
+                    System.err.println("Error: encoding unsupported.");
+                } finally {
+                    System.exit(0);
+                }
             }
         });
     }
@@ -79,16 +103,8 @@ public class MainPage  {
         theLimit.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         usedPercentage = new JTextField();
         usedPercentage.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-
         addBtn = new JButton();
         sumBtn = new JButton();
         catBtn = new JButton();
     }
-
-    public static void main(String[] args) {
-        new MainPage(BudgetBuddy.getInstance());
-    }
-
-
-
 }

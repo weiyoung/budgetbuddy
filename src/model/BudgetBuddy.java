@@ -12,13 +12,14 @@ public class BudgetBuddy extends Subject {
     private double total;
     private double limit;
     private ArrayList<Entry> entries;
-    private Map<Category, Entry> categoryMap = new HashMap<>();
+    private Map<Category, Entry> categoryMap;
     private static BudgetBuddy thisBuddy = null;
 
     private BudgetBuddy() {
         total = 0;
         limit = 0;
         entries = new ArrayList();
+        categoryMap = new HashMap<>();
     }
 
     public static BudgetBuddy getInstance() {
