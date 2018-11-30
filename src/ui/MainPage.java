@@ -1,5 +1,6 @@
 package ui;
 
+import javafx.scene.media.AudioClip;
 import model.BudgetBuddy;
 import model.Saves;
 import model.categories.Food;
@@ -55,7 +56,6 @@ public class MainPage  {
         addBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("adding new entry");
                 new EntryPage(buddy);
                 frame1.setVisible(false);
             }
@@ -63,7 +63,6 @@ public class MainPage  {
         sumBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("viewing summary");
                 new SummaryPage(buddy);
                 frame1.setVisible(false);
             }
@@ -71,7 +70,6 @@ public class MainPage  {
         catBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("checking summary by category");
                 new CategoryPage(buddy, new Food());
                 frame1.setVisible(false);
             }
@@ -79,19 +77,34 @@ public class MainPage  {
         exitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                playSound("bye.mp3");
                 try {
                     Saves s = new Saves();
                     s.save(buddy);
-                    System.out.println("Saved successfully. Seeya ヽ(^o^)丿");
+                    System.out.println("Saved successfully ヽ(^o^)丿");
                 } catch (FileNotFoundException error) {
                     System.err.println("Error: save file not found.");
                 } catch (UnsupportedEncodingException error) {
                     System.err.println("Error: encoding unsupported.");
                 } finally {
+                    try {
+                        Thread.sleep(1500);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
                     System.exit(0);
                 }
             }
         });
+    }
+
+    private void playSound(String path){
+        try {
+            AudioClip clip = new AudioClip(this.getClass().getResource(path).toString());
+            clip.play();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error playing music.");
+        }
     }
 
     private void createUIComponents() {

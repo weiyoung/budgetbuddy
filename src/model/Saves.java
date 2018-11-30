@@ -36,7 +36,6 @@ public class Saves {
         b.setLimit(Double.parseDouble(lines.get(1)));
         for (int i = 2; i < lines.size(); i++) {
             String[] dataArray = lines.get(i).split("\\|");
-            System.out.println(Arrays.toString(dataArray));
             Category c;
             if (dataArray[0].equals("Food")) c = new Food();
             else if (dataArray[0].equals("Groceries")) c = new Groceries();

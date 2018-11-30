@@ -15,9 +15,9 @@ import java.util.Scanner;
 
 public class Application {
 
-    public static void main(String[] args) {
-        new Application();
-    }
+//    public static void main(String[] args) {
+//        new Application();
+//    }
 
     Scanner scanner = new Scanner(System.in);
     BudgetBuddy buddy = BudgetBuddy.getInstance();

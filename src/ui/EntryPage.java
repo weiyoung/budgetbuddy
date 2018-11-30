@@ -1,5 +1,6 @@
 package ui;
 
+import javafx.scene.media.AudioClip;
 import model.BudgetBuddy;
 import model.Category;
 import model.categories.Food;
@@ -49,9 +50,11 @@ public class EntryPage {
                         throw new NumberFormatException();
                     }
                     buddy.createEntry(category, name, amount);
+                    playSound("kaching.mp3");
                     new MainPage(buddy);
                     frame2.setVisible(false);
                 } catch (NumberFormatException error) {
+                    playSound("error.mp3");
                     JOptionPane.showMessageDialog(null, "Invalid input!");
                 }
             }
@@ -75,6 +78,15 @@ public class EntryPage {
                 frame2.setVisible(false);
             }
         });
+    }
+
+    private void playSound(String path){
+        try {
+            AudioClip clip = new AudioClip(this.getClass().getResource(path).toString());
+            clip.play();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error playing music.");
+        }
     }
 
     private void createUIComponents() {

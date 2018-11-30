@@ -59,15 +59,12 @@ public class CategoryPage {
         String entry = "";
         int count = 0;
         for (Entry e: buddy.getEntries()) {
-            if (e.getCategory().equals(category.getName()))
+            if (e.getCategory().equals(category.getName())) {
                 entry = " Name: " + e.getName() + "\n Spent: $" + df.format(e.getAmount()) + "\n\n";
-            else
+                string += entry;
+            } else
                 count++;
-            string += entry;
         }
-
-
-
         if (buddy.getEntries() == null || count == buddy.getEntries().size())
             string += " No entries recorded";
         sumArea.setText(string);
