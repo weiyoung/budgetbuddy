@@ -1,7 +1,5 @@
-# Personal Project
+# BudgetBuddy
 
-BudgetBuddy is an academic project for CPSC 210 (Software Construction)
+BudgetBuddy is an academic project for my software construction class, CPSC 210.
 
-This project is built mainly with Java, GUI is made using Java's Swing toolkit.
-
-Pls giv star if you like it!
+This project is built with Java, GUI is done with Java's Swing toolkit.
